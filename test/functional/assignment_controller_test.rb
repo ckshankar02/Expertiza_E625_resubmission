@@ -120,7 +120,6 @@ class AssignmentControllerTest < ActionController::TestCase
   end
 
 
-
 # E726 Fall2012 Change Start
 # Tests written for the new fields that have been included as part of this assignment
   def test_new_ids
@@ -143,11 +142,11 @@ class AssignmentControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+
   def test_redirect_to_new
     t = tree_folders(:tree_folder_courses).id
-    post :new, {:parent_id => nil}, nil, {'message' => 'Here'}
+    post :new, {:parent_id => nil}
     assert_response(:success)
-    assert_equal 'Here', flash[:notice]
   end
   # E726 Fall2012 Change End
 end

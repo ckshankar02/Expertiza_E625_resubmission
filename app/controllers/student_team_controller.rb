@@ -9,19 +9,22 @@ class StudentTeamController < ApplicationController
     @role_names  = Array.new
     @student = AssignmentParticipant.find(params[:id])
 
-#****************************** OSS Change *********************************************
+#****************************** OSS Change starts here *********************************************
+#The team of the currently logged in user is determined
+
     assignment_teams = Team.find_all_by_parent_id(@student.parent_id)
 
     current_team_id =0
     assignment_teams.each do |x|
       find_user_team = TeamsUser.find_all_by_team_id(x.id)
       find_user_team.each do |x1|
-        if(x1.user_id == session[:user].id)
+        if(x1.user_id == session[:user].id)           #Team of the current session user
            current_team_id = x1.team_id
         end
       end
     end
 
+    #All the members of the selected team are populated
     @team_mem_id = TeamsUser.all(:conditions => ["team_id = ?",current_team_id])
     @role_flag = 0
 
@@ -57,10 +60,9 @@ class StudentTeamController < ApplicationController
       @role_names << TeamRole.find(x.role_id)
     end
 =end
+    #Roles assigned for the current team assignment is fetched
     @role_names = TeamRole.find_by_sql("select r.id as id, r.role_names as role_names, tra.id as ar_id from team_roles r, team_role_assignments tra where tra.role_id = r.id and tra.assignment_id = #{@student.parent_id}")
-
-
-#****************************** OSS Change *********************************************
+#****************************** OSS Change ends here *********************************************
 
     return unless current_user_id?(@student.user_id)
     
@@ -68,7 +70,9 @@ class StudentTeamController < ApplicationController
     @received_invs = Invitation.find(:all, :conditions => ['to_id = ? and assignment_id = ? and reply_status = "W"', @student.user.id, @student.assignment.id])
   end
 
- #********************************OSS CHANGE*****************************************************
+ #********************************OSS CHANGE STARTS HERE*****************************************************
+  # When the currently logged in user selects a role in the team, a new entry is made in the
+  # team_member_roles table with user id, assignment id and the role id.
   def select_role
     @mem_role  = TeamMemberRole.new
     @mem_role.assignment_role_id = params[:member_roles]
@@ -77,7 +81,7 @@ class StudentTeamController < ApplicationController
 
     redirect_to :controller => 'student_team', :action => 'view' , :id => params[:id]
   end
- #********************************OSS CHANGE********************************************************
+ #********************************OSS CHANGE ENDS HERE********************************************************
 
 
   def create

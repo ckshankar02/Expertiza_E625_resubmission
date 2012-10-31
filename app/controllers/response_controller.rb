@@ -404,6 +404,8 @@ class ResponseController < ApplicationController
     @modified_object = @map.id
 
 #********************************* OSS CHANGE *******************************************************
+  #If the assignment is a role based team assignment then the based on the roles assigned to the user
+  # being reviewed.
     @modified_role_object = params[:rolemap_id]
     @reviewed_student = User.find(params[:reviewed_member])
 
@@ -535,6 +537,7 @@ class ResponseController < ApplicationController
       end
 
       #******************************** OSS CHANGE STARTS HERE************************************************
+      #The review scores are captured by the below code on to the score table.
       if is_role_based_review == "YES"
         @role_response = Response.create(:map_id => @role_map.id, :additional_comment => params[:review_role][:comments],:version_num=>@role_version)
         @role_res = @role_response.id
@@ -558,6 +561,7 @@ class ResponseController < ApplicationController
       msg = "Your response was successfully saved."
 
     #*************************************** OSS CHANGE STARTS HERE *************************************************
+    # For the role based review made a score cache entry is made.
       if is_role_based_review == "YES"
         ResponseHelper.compare_scores(@role_response, @role_questionnaire)
         ScoreCache.update_cache(@role_res)
@@ -640,6 +644,7 @@ class ResponseController < ApplicationController
 
 
   #***************************** OSS CHANGE STARTS HERE ********************************************************
+
   def get_role_content
     @role_title = @role_map.get_title
     @role_assignment = @role_map.assignment
@@ -655,8 +660,7 @@ class ResponseController < ApplicationController
   end
   #***************************** OSS CHANGE ENDS HERE ********************************************************
 
-#>>>>>>> 4c68f52a7464e968a722335cb6340efbf1c65b0a
-  
+
   def redirect_when_disallowed(response)
     # For author feedback, participants need to be able to read feedback submitted by other teammates.
     # If response is anything but author feedback, only the person who wrote feedback should be able to see it.

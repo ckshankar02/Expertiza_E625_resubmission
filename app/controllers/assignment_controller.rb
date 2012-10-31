@@ -53,6 +53,7 @@ class AssignmentController < ApplicationController
 
 	
 	#*****************OSS Change************************************************************************
+  # The set of available roles are presented to the view from the controller.
     @team_role = Role.new
   
     @role_present = TeamRole.find_roles()
@@ -140,6 +141,8 @@ class AssignmentController < ApplicationController
     check_flag = @assignment.availability_flag
 
     # E726 Fall2012 Change Starts
+    #The below code set the questionnaire ids in the assignments table for the 3 new review types addes a part of this
+    # OSS project.
     @assignment.selfreview_questionnaire_id = params[:questionnaires][:selfreview].to_i
     @assignment.managerreview_questionnaire_id = params[:questionnaires][:managerreview].to_i
     @assignment.readerreview_questionnaire_id = params[:questionnaires][:readerreview].to_i
@@ -149,14 +152,16 @@ class AssignmentController < ApplicationController
       raise "Please enter a valid Submission deadline!!"
       render :action => 'create'
     elsif (@assignment.save)
-	#************************************ OSS CHANGE *****************************************
+	#************************************ OSS CHANGE STARTS HERE *****************************************
+  #The below code will update the team_role_assignment with the assignment id and the roles
+  # assigned to that assignment if the assignments table is successfully saved
       params[:team_roles].each do |x|
          roleUpdate = TeamRoleAssignment.new
          roleUpdate.role_id = x.to_i
          roleUpdate.assignment_id = @assignment.id
          roleUpdate.save
       end
-  #************************************ OSS CHANGE *****************************************
+  #************************************ OSS CHANGE ENDS HERE *****************************************
       set_questionnaires
       set_limits_and_weights
       max_round = 1
