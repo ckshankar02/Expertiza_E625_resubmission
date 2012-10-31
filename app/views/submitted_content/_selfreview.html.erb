@@ -1,4 +1,5 @@
 <!-- E726 Fall2012 Change Starts -->
+<!-- Will show a link to begin the self review only if the Self Review is assigned to the questionnaire -->
 <% if !@assignment.selfreview_questionnaire_id.nil? %>
     Self Review <%= link_to 'Begin', {:controller => 'submitted_content', :action => 'view_selfreview', :id => @assignment.selfreview_questionnaire_id }%>
 <% end %>
