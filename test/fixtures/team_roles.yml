@@ -1,0 +1,20 @@
+team_role0:
+      role_names: Developer
+      creator_id: 2
+      created_at: 2012-09-19 20:45:08
+      updated_at: 2012-09-19 20:45:08
+      role_questionnaire_id: 185
+
+team_role1:
+      role_names: Testing
+      creator_id: 2
+      created_at: 2012-09-19 20:45:08
+      updated_at: 2012-09-19 20:45:08
+      role_questionnaire_id: <%= Fixtures.identify(:questionnaire8) %>
+
+team_role2:
+      role_names: Architect
+      creator_id: 2
+      created_at: 2012-09-19 20:45:08
+      updated_at: 2012-09-19 20:45:08
+      role_questionnaire_id:  187

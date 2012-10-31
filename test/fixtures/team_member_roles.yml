@@ -1,0 +1,5 @@
+team_member_role1:
+  assignment_role_id: <%= Fixtures.identify(:team_role_assignment1) %>
+  user_id: <%= Fixtures.identify(:student3) %>
+  created_at: 2012-09-19 20:45:08
+  updated_at: 2012-09-19 20:45:08

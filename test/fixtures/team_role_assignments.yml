@@ -1,0 +1,5 @@
+team_role_assignment1:
+ role_id: <%= Fixtures.identify(:Testing) %>
+ assignment_id: <%= Fixtures.identify(:assignment_oss) %>
+ created_at: 2012-09-19 20:45:08
+ updated_at: 2012-09-19 20:45:08
