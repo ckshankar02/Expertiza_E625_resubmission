@@ -31,8 +31,14 @@ fourth:
 fifth:
   assignment_id: <%= Fixtures.identify(:assignment_oss) %>
   questionnaire_id: <%= Fixtures.identify(:questionnaire1) %>
-  user_id: <%= Fixtures.identify(:student2) %>
+  user_id: <%= Fixtures.identify(:student3) %>
   notification_limit: 15
   questionnaire_weight: 100
 
+sixth:
+  assignment_id: <%= Fixtures.identify(:assignment_oss) %>
+  questionnaire_id: <%= Fixtures.identify(:teammate_review_questionnaire) %>
+  user_id: <%= Fixtures.identify(:student3) %>
+  notification_limit: 15
+  questionnaire_weight: 100
 

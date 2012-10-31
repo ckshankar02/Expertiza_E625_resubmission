@@ -57,6 +57,6 @@ question7:
 question8:
  txt: Come on!! start testing?
  true_false: false
- questionnaire_id: <%= Fixtures.identify(:questionnaire8) %>
+ questionnaire_id: <%= Fixtures.identify(:rolebased_review_questionnaire) %>
  weight: 5
 

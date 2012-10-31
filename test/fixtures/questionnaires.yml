@@ -1,12 +1,3 @@
-RoleBased_review_questionnaire:
- name: questionnaire8
- instructor_id: <%= Fixtures.identify(:instructor3) %>
- private: 0
- min_question_score: 0
- max_question_score: 5
- type: "TeammateReviewQuestionnaire"
- display_type: "TeammateReview"
-
 questionnaire0:
  name: questionnaire0
  instructor_id: <%= Fixtures.identify(:instructor1) %>
@@ -80,4 +71,11 @@ global_survey_questionnaire:
  type: "GlobalSurveyQuestionnaire"
  display_type: "GlobalSurvey"
 
-
+rolebased_review_questionnaire:
+ name: questionnaire8
+ instructor_id: <%= Fixtures.identify(:instructor3) %>
+ private: 0
+ min_question_score: 0
+ max_question_score: 5
+ type: "TeammateReviewQuestionnaire"
+ display_type: "TeammateReview"

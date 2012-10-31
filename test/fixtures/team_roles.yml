@@ -3,18 +3,18 @@ team_role0:
       creator_id: 2
       created_at: 2012-09-19 20:45:08
       updated_at: 2012-09-19 20:45:08
-      role_questionnaire_id: 185
+      role_questionnaire_id: <%= Fixtures.identify(:rolebased_review_questionnaire) %>
 
 team_role1:
       role_names: Testing
       creator_id: 2
       created_at: 2012-09-19 20:45:08
       updated_at: 2012-09-19 20:45:08
-      role_questionnaire_id: <%= Fixtures.identify(:questionnaire8) %>
+      role_questionnaire_id: <%= Fixtures.identify(:rolebased_review_questionnaire) %>
 
 team_role2:
       role_names: Architect
       creator_id: 2
       created_at: 2012-09-19 20:45:08
       updated_at: 2012-09-19 20:45:08
-      role_questionnaire_id:  187
+      role_questionnaire_id:  <%= Fixtures.identify(:rolebased_review_questionnaire) %>
