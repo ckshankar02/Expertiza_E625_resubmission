@@ -14,6 +14,7 @@ class AssignmentControllerTest < ActionController::TestCase
   set_fixture_class :system_settings => 'SystemSettings'
   fixtures :system_settings
   fixtures :content_pages
+  fixtures :tree_folders
   @settings = SystemSettings.find(:first)
 
   def setup
@@ -118,7 +119,7 @@ class AssignmentControllerTest < ActionController::TestCase
 
   end
 
-  assignment_controller_test.rb
+
 
 # E726 Fall2012 Change Start
 # Tests written for the new fields that have been included as part of this assignment
@@ -140,6 +141,13 @@ class AssignmentControllerTest < ActionController::TestCase
                                 :course_id => courseid)
     assert assignment.save
     assert_response :success
+  end
+
+  def test_redirect_to_new
+    t = tree_folders(:tree_folder_courses).id
+    post :new, {:parent_id => nil}, nil, {'message' => 'Here'}
+    assert_response(:success)
+    assert_equal 'Here', flash[:notice]
   end
   # E726 Fall2012 Change End
 end

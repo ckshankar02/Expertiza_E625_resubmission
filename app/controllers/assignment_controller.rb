@@ -80,7 +80,7 @@ class AssignmentController < ApplicationController
     # However, when an administrator creates an assignment, (s)he needs to preface the path with the user.name of the instructor whose assignment it is.
 
 
-    #********************************************OSS CHANGE**************************************************
+    # E726 Fall2012 Change Starts
 
     # Code for adding rubrics if option selected in the form was "Same as Review Rubric"
     if(params[:selfreview_checkbox] == "selfreview_checkbox")
@@ -98,7 +98,7 @@ class AssignmentController < ApplicationController
       params[:weights][:readerreview] = params[:weights][:review]
       params[:limits][:readerreview] = params[:limits][:review]
     end
-    #********************************************OSS CHANGE ENDS**************************************************
+    # E726 Fall2012 Change Ends
 
     @assignment = Assignment.new(params[:assignment])
     @user =  ApplicationHelper::get_user_role(session[:user])
@@ -139,9 +139,11 @@ class AssignmentController < ApplicationController
 
     check_flag = @assignment.availability_flag
 
+    # E726 Fall2012 Change Starts
     @assignment.selfreview_questionnaire_id = params[:questionnaires][:selfreview].to_i
     @assignment.managerreview_questionnaire_id = params[:questionnaires][:managerreview].to_i
     @assignment.readerreview_questionnaire_id = params[:questionnaires][:readerreview].to_i
+    # E726 Fall2012 Change Ends
 
     if(check_flag == true && params[:submit_deadline].nil?)
       raise "Please enter a valid Submission deadline!!"
