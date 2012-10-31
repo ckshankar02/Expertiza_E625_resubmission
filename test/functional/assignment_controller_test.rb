@@ -117,6 +117,31 @@ class AssignmentControllerTest < ActionController::TestCase
     assert_raise(ActiveRecord::RecordNotFound){ Assignment.find(id) }
 
   end
+
+  assignment_controller_test.rb
+
+# E726 Fall2012 Change Start
+# Tests written for the new fields that have been included as part of this assignment
+  def test_new_ids
+    questionnaire_id = Questionnaire.first.id
+    instructorid = Instructor.first.id
+    courseid = Course.first.id
+    # post :new, :assignment
+    assignment = Assignment.new(:name                => "2_valid_test",
+                                :course_id           => 1,
+                                :directory_path      => "2_valid_test",
+                                :review_questionnaire_id    => questionnaire_id,
+                                :review_of_review_questionnaire_id => questionnaire_id,
+                                :author_feedback_questionnaire_id  => questionnaire_id,
+                                :selfreview_questionnaire_id    => questionnaire_id,
+                                :managerreview_questionnaire_id => questionnaire_id,
+                                :readerreview_questionnaire_id  => questionnaire_id,
+                                :instructor_id => instructorid,
+                                :course_id => courseid)
+    assert assignment.save
+    assert_response :success
+  end
+  # E726 Fall2012 Change End
 end
 
 
